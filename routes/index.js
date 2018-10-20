@@ -3,15 +3,15 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index');
 });
 
 router.get('/buscarAjuda', (req, res) => {
-  console.log('buscar ajuda');
+  res.render('buscarAjuda', {erros: '', apoiador: {}});
 });
 
 router.get('/queroAjudar', (req, res) => {
-  
+  res.render('queroAjudar', {erros: '', imigrante: {}});
 });
 
 router.get('/orientacoesApoiadores', (req, res) => {
