@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const URI = 'mongodb://localhost:27017';
+const URI = 'mongodb://localhost:27017/receptio';
 
 mongoose.connect(URI)
     .then(db => console.log('DB is connected'))

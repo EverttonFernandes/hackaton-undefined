@@ -1,25 +1,37 @@
 var express = require('express');
 var router = express.Router();
 
+const Busca = require('../models/busca');
+const Quero = require('../models/quero');
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index');
 });
 
-router.get('/buscarAjuda', (req, res) => {
-  res.render('buscarAjuda', {erros: '', apoiador: {}});
+router.post('/buscaAjuda', (req, res) => {
+  const busca = new Busca({
+      userName: req.body.userName, 
+      pais: req.body.pais, 
+      estado: req.body.estado, 
+      cidade: req.body.cidade, 
+      idiomas: req.body.idiomas, 
+      historia: req.body.historia 
+  });
+  busca.save();
+  res.redirect('/');
 });
 
-router.get('/queroAjudar', (req, res) => {
-  res.render('queroAjudar', {erros: '', imigrante: {}});
+router.post('/queroAjudar', (req, res) => {
+  const quero = new Quero({
+    userName: req.body.userName, 
+    estado: req.body.estado, 
+    cidade: req.body.cidade, 
+    idiomas: req.body.idiomas, 
+    historia: req.body.historia,
+    email: req.body.email
+  });
+  quero.save();
+  res.redirect('/');
 });
-
-router.get('/orientacoesApoiadores', (req, res) => {
-  
-});
-
-router.get('/orientacoesImigrantes', (req, res) => {
-  
-});
-
 module.exports = router;
